@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+    <meta charset="utf-8">    
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>    
+
+</head>
+
+    <body>
+    
+        <div id="root">
+            <h5>끝말잇기</h5>
+            <h5>{{ word }}</h5>
+
+            <form v-on:submit = 'event_submit'>
+                <input type="text" ref="input" v-model="input_value">
+                <button type="submit">입력하기</button>
+            </form>
+
+            <h5>{{ result }}</h5>
+        </div>
+    
+    </body>
+
+    <script>
+        const app = new Vue({
+            el : '#root',
+            data : {
+                word : '인철',
+                input_value : '',
+                result : '',
+            },
+            methods : {
+                event_submit(e){
+                    e.preventDefault();
+                    
+                    if(this.input_value.length<2){   //입력한 수가 2글자 미만일 경우.
+                        this.result = '2글자 이상으로 적어주세요!';
+                        this.$refs.input.focus();
+                        this.input_value = '';
+
+                        return -1;
+                    }
+
+                    if(this.word[this.word.length -1] === this.input_value[0]){
+                        this.word = this.input_value;
+                        this.result = '정답입니다!';
+                        this.input_value = '',
+                        this.$refs.input.focus();
+                    }                    
+                    else{
+                        this.result = '떙입니다!';
+                        this.$refs.input.focus();
+                        this.input_value = '';
+                    }
+                }
+            }
+
+        });
+    </script>
+</html>

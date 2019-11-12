@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+    <meta charset="utf-8">    
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>    
+
+</head>
+
+    <body>
+    
+        <div id="root">
+
+            <h5>{{ first_random_value }} 곱하기 {{ second_random_value }}은??</h5>
+            <form v-on:submit="onSubmitEvent">
+                <input type="number" ref="answer" v-model="value">
+                <button>제출</button>
+            </form>
+            <h5>{{ result }}</h5>
+        
+        </div>
+    
+    </body>
+
+    <script>
+        const app = new Vue({
+            el : '#root',
+            data : {
+                first_random_value : Math.ceil(Math.random()*9),
+                second_random_value : Math.ceil(Math.random()*9),
+                value : '',
+                result : '',
+            },
+            methods : {
+                onSubmitEvent(e){
+                    e.preventDefault();
+                    if(this.first_random_value*this.second_random_value === parseInt(this.value)){
+                        this.result = '정답입니다.';
+                        this.first_random_value = Math.ceil(Math.random()*9);
+                        this.second_random_value = Math.ceil(Math.random()*9);
+                        this.value = '';
+                        this.$refs.answer.focus();
+                        
+                    }
+                    else{
+                        this.result = '떙입니다.';
+                        this.value = '';
+                        this.$refs.answer.focus();
+                    }
+                }
+            }
+
+        });
+    </script>
+</html>

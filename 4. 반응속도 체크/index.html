@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+<head>
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+    <meta charset="utf-8">    
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>    
+
+</head>
+
+    <body>
+        <div id="root">
+            <Center>
+                <br/><br/><br/><Br/>
+                <h3>반응 속도 테스트 프로그램</h3>
+
+                <br/><br/><br/><br/>
+
+                <div v-bind:class="div_class" v-on:click="event_click" style="width:400px;height:400px">
+                    <br/><br/><br/><br/><br/><br/><br/>
+                    <h5>{{ text }}</h5>
+                </div>
+
+                <br/>
+
+                <h5>평균 시간 : {{ result.reduce((a,c) => a+c,0)/result.length || 0 }} ms</h5>
+            </Center>
+        </div>    
+    </body>
+    <style scoped>
+        .ready{
+            background:red;
+        }
+        .start{
+            background:green;
+        }
+        .hasty{
+            background: yellow; 
+        }
+        .end{
+            background:blue;
+        }
+    </style>
+    
+    <script>
+        let startTime = 0;
+        let endTime = 0;
+        let timeout = null;
+
+        const app = new Vue({
+            el : '#root',
+            data : {
+                text:'클릭한 후 시작해주세요.',
+                result:[],
+                div_class:'start',
+            },
+            methods : {
+                event_click(e){
+                    if(this.div_class === 'start'){
+                        this.div_class = 'ready';
+                        this.text = '파란색이 되면 클릭해주세요..!';
+
+                        timeout = setTimeout(() => {
+                            this.div_class = "end";
+                            this.text = '지금이야..!';
+                            startTime = new Date();
+
+                        },Math.floor(Math.random()*1000)+2000);
+
+                    }else if(this.div_class === 'ready'){
+                        this.div_class = 'start';
+                        this.text = '너무 성급합니다...! 게임을 다시 시작하려면 클릭';
+                        clearTimeout(timeout);
+                    }else if(this.div_class === 'end'){
+                        this.div_class = 'start';
+                        this.text = '게임을 다시 시작하고 싶으면 클릭';
+
+                        endTime = new Date();
+                        this.result.push(endTime - startTime);
+                    }
+                }
+            }
+
+        });
+    </script>
+</html>
