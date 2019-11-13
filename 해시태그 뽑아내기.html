@@ -1,0 +1,154 @@
+<!doctype html>
+<html>
+<head>
+    <title>해시 태그 뽑아내기 </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
+    <meta charset="utf-8">    
+    
+</head>
+<body>
+    
+    <div id="root">
+        <p> 첫번쨰 태그 : {{ value }} </p>
+
+        <br/><br/>
+
+        <p> 두번쨰 태그 : {{ value2 }} </p>
+        
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> 
+
+    <script>
+        let list1 = [
+            "마이아이", 
+            "내아이", 
+            "맨투맨",
+            "유아맨투맨", 
+            "유아패션", 
+            "베이비패션", 
+            "패션베이비들",
+            "아기옷", 
+            "아이옷", 
+            "아동의류", 
+            "옷", 
+            "아동복장", 
+            "아기의류", 
+            "아이의류", 
+            "아동의류", 
+            "유아의류", 
+            "아동복", 
+            "아동복쇼핑몰", 
+            "유아복", 
+            "유아복쇼핑몰", 
+            "유아동복", 
+            "유아동복쇼핑몰",
+            "육아", 
+            "육아일기", 
+            "육아소통",
+            "육아일상",
+            "유아옷",
+            "아기복장",
+            "아기옷구매",
+            "아기옷공구",
+            "유아옷공구",
+            "패션아이",
+            "myi",
+            "아기코디",
+            "아이코디",
+            "등원룩",
+            "하원룩",
+            "유치원",
+            "유아옷코디",
+            "아기옷코디",
+            "귀여움주의",
+            "긔여긔",
+            "유아동코디",
+            "유아동패션",
+            "패션코디",             
+        ]
+
+        let list2 = [
+            "좋아요", 
+            "좋아요반사", 
+            "좋반", 
+            "첫줄반사", 
+            "좋반테러", 
+            "소통해요", 
+            "소통", 
+            "인친해요", 
+            "인친환영", 
+            "첫줄", 
+            "인친", 
+            "팔로우", 
+            "팔로우환영",
+            "맞팔", 
+            "맞팔선팔", 
+            "선팔맞팔", 
+            "선팔하면맞팔", 
+            "패션", 
+            "패션스타그램", 
+            "互关", 
+            "互粉", 
+            "互赞", 
+            "いいね", 
+            "いいね返し", 
+            "フォロー", 
+            "フォロバ", 
+            "相互フォロー",
+            "lfl", 
+            "l4l", 
+            "likeforlikes",
+            "like4likes", 
+            "likeforlikeback", 
+            "followforfollow", 
+            "follow4follow", 
+            "followforfollowback", 
+            "likelike", 
+            "instagood", 
+            "instalike",
+            "댓반환영",
+            "댓반",
+            "좋반댓반",
+            "댓반테러",
+            "칼맞팔", 
+        ]
+
+        function randomItem(a) {
+            let string = '';
+            let num = 27;   //몇 개의 데이터를 뽑아 낼 것인지, 
+
+            for(let i=0;i<num;i++)
+            {
+                let random_num = Math.floor(Math.random() * a.length);
+                string = string + '#' + a[random_num] + '';
+                a.splice(random_num,1);
+            }
+
+            return string;
+        }
+
+        const app = new Vue({
+            el : '#root',
+            data : {
+                value:'',
+                value2:'',
+                
+            },
+            methods : {
+                
+            },
+            mounted(){
+                var random_tag = randomItem(list1);
+                this.value = random_tag;
+
+                var random_tag = randomItem(list2);
+                this.value2 = random_tag;     
+            }
+
+        });
+
+    </script>
+</body>
+</html>
