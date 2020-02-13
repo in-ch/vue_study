@@ -38,19 +38,26 @@
     </nav>
 
     <v-row>
-      <v-col cols="12" xs="12" md="4">
-        왼쪽
+      <v-col cols="12" md="4">
+        <login-form />
       </v-col>
 
-      <v-col cols="12" xs="12" md="8">
-        오른쪽
+      <v-col cols="12" md="8">
+        <sign-up />
       </v-col>
     </v-row>
   </v-app>
 </template>
 
 <script>
+import LoginForm from "~/components/LoginForm";
+import SignUp from "~/components/signup";
+
 export default {
+  components: {
+    LoginForm,
+    SignUp
+  },
   data() {
     return {
       name: "Nuxt.js"
