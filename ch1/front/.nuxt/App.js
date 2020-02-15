@@ -11,10 +11,9 @@ import NuxtBuildIndicator from './components/nuxt-build-indicator'
 
 import '../node_modules/vuetify/dist/vuetify.css'
 
-import _77068119 from '../layouts/admin.vue'
 import _6f6c098b from '../layouts/default.vue'
 
-const layouts = { "_admin": _77068119,"_default": _6f6c098b }
+const layouts = { "_default": _6f6c098b }
 
 export default {
   head: {"title":"NodeBird","meta":[],"link":[{"rel":"stylesheet","type":"text\u002Fcss","href":"https:\u002F\u002Ffonts.googleapis.com\u002Fcss?family=Roboto:100,300,400,500,700,900&display=swap"},{"rel":"stylesheet","type":"text\u002Fcss","href":"https:\u002F\u002Fcdn.jsdelivr.net\u002Fnpm\u002F@mdi\u002Ffont@latest\u002Fcss\u002Fmaterialdesignicons.min.css"}],"style":[],"script":[]},

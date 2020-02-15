@@ -1,6 +1,4 @@
-<template>
-  <div>hello {{ name }}</div>
-</template>
+<template> </template>
 
 <script>
 export default {
