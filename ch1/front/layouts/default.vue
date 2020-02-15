@@ -43,7 +43,7 @@
       </v-col>
 
       <v-col cols="12" md="8">
-        <sign-up />
+        <Nuxt />
       </v-col>
     </v-row>
   </v-app>
@@ -51,12 +51,10 @@
 
 <script>
 import LoginForm from "~/components/LoginForm";
-import SignUp from "~/components/signup";
 
 export default {
   components: {
-    LoginForm,
-    SignUp
+    LoginForm
   },
   data() {
     return {
