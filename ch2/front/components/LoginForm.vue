@@ -25,8 +25,11 @@
   </v-container>
   <v-container v-else>
     <v-card>
-      로그인되었습니다.
-      <v-btn @click="onLogOut">로그아웃</v-btn>
+      <v-container>
+        {{ me.nickname }}님이 로그인되었습니다.
+        <br />
+        <v-btn @click="onLogOut">로그아웃</v-btn>
+      </v-container>
     </v-card>
   </v-container>
 </template>
@@ -48,17 +51,34 @@ export default {
   methods: {
     onSubmitForm() {
       if (this.$refs.form.validate()) {
-        alert("로그인 시도");
-      } else {
-        alert("값을 다 입력해주세요.");
+        this.$store
+          .dispatch("users/login", {
+            email: this.email,
+            nickname: "지은갓갓갓"
+          })
+          .then(() => {
+            this.$router.push({
+              path: "/"
+            });
+          })
+          .catch(() => {
+            alert("회원가입 실패");
+          });
       }
     },
-    onLogOut() {}
+    onLogOut() {
+      this.$store.dispatch("users/logOut");
+    }
   },
   computed: {
     me() {
-      return this.$store.state.user.me;
+      return this.$store.state.users.me;
     }
+  },
+  head() {
+    return {
+      title: "회원가입"
+    };
   }
 };
 </script>
