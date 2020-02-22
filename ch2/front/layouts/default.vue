@@ -37,8 +37,10 @@
       </v-toolbar>
     </nav>
 
-    <div>{{ posts }}</div>
+    <!-- <div>{{ posts }}</div>
     <v-btn @click="onChangeName">바이바이</v-btn>
+    -->
+
     <v-row no-gutters>
       <!-- no-gutters 같은 경우 세로줄 간의 패딩을 없앨 수 있다. -->
       <v-col cols="12" md="4">
