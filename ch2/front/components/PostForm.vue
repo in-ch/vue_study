@@ -15,8 +15,8 @@
           @input="onChangeTextarea"
         />
         <!-- outlined는 테두리 그려주는 거, auto-grow는 텍스트가 길어지면 자동으로 길어지는 거, clearalbe는 x 떠서 글 한 번에 없애 주는 거 -->
+        <v-btn type="submit" color="green" absolute right>짹쨱</v-btn>
       </v-form>
-      <v-btn type="submit" color="green" absolute right>짹쨱</v-btn>
       <v-btn>이미지 업로드</v-btn>
     </v-container>
   </v-card>
@@ -32,15 +32,16 @@ export default {
       hideDetails: true,
       successMessage: "",
       success: false,
-      textRules: [v => !!v || "내용을 입력하세요."]
+      textRules: [v => !!v || "내용을 입력하세요."],
+      valid: false
     };
   },
   computed: {
-    ...mapState(["users/me"])
+    ...mapState("users", ["me"])
   },
   methods: {
     onChangeTextarea() {
-      this.hideDetails = false; //이미지 업로드 위에 빈 공간이 생기게 만드는 것이다. ( 오류 메시지를 위해서 )
+      this.hideDetails = true; //이미지 업로드 위에 빈 공간이 생기게 만드는 것이다. ( 오류 메시지를 위해서 )
       this.success = false;
       this.successMessage = "";
     },
@@ -58,9 +59,10 @@ export default {
             createdAt: Date.now()
           })
           .then(() => {
+            this.content = "";
             this.hideDetails = false;
             this.success = true;
-            this.successMessage = "게시글 등록 성공";
+            this.successMessage = "게시글 등록 성공!";
           })
           .catch(() => {});
       }

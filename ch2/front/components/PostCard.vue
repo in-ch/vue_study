@@ -3,8 +3,8 @@
     <v-image />
     <v-card-text>
       <div>
-        <h3>in-ch</h3>
-        <div>안녕하세요. 게시글입니다.</div>
+        <h3>{{ post.User.nickname }}</h3>
+        <div>{{ post.content }}</div>
       </div>
     </v-card-text>
     <v-card-actions>
@@ -24,6 +24,15 @@
   </v-card>
 </template>
 
-<script></script>
+<script>
+export default {
+  props: {
+    post: {
+      type: Object,
+      required: true //필수 여부
+    }
+  }
+};
+</script>
 
 <style></style>
