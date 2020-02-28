@@ -11,7 +11,7 @@
       label="댓글 달기"
       :hide-details="hideDetails"
       :success="success"
-      success-messages="successMessages"
+      :success-messages="successMessages"
       @input="onChangeTextarea"
     >
     </v-textarea>
@@ -55,13 +55,17 @@ export default {
           .dispatch("posts/addComment", {
             id: Date.now(),
             postId: this.postId,
+            User: {
+              nickname: this.me.nickname
+            },
+            content: this.content,
             required: true
           })
           .then(() => {
             this.content = "";
             this.hideDetails = false;
             this.success = true;
-            this.successMessage = "게시글 등록 성공!";
+            this.successMessages = "게시글 등록 성공!";
           })
           .catch(() => {});
       }
