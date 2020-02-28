@@ -4,13 +4,16 @@
       <v-card style="margin-bottom: 20px">
         <v-container>
           <v-subheader>내 프로필</v-subheader>
-        </v-container>
-        <v-form>
-          <v-container>
-            <v-text-field label="닉네임" required />
+          <v-form v-model="valid" @submit.prevent="onChangeNickname">
+            <v-text-field
+              label="닉네임"
+              required
+              v-model="nickname"
+              :rules="nicknameRules"
+            />
             <v-btn color="blue" type="submit">수정</v-btn>
-          </v-container>
-        </v-form>
+          </v-form>
+        </v-container>
       </v-card>
 
       <v-card style="margin-bottom: 20px">
@@ -40,8 +43,17 @@ export default {
   layout: "admin",
   data() {
     return {
-      name: "Nuxt.js"
+      valid: false,
+      nickname: "",
+      nicknameRules: [v => !!v || "닉네임을 입력하세요."]
     };
+  },
+  methods: {
+    onChangeNickname() {
+      this.$store.dispatch("users/changeNickname", {
+        nickname: this.nickname
+      });
+    }
   },
   head() {
     return {

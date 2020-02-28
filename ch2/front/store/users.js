@@ -1,11 +1,16 @@
 export const state = () => ({
-  me: null
+  me: null,
+  followerList: [],
+  followingList: []
 });
 
 export const mutations = {
   //단순한 동기적 작업을 시킬 때 사용한다.
   setMe(state, payload) {
     state.me = payload; //payload는 회원 정보
+  },
+  changeNickname(state, payload) {
+    state.me.nickname = payload.nickname;
   }
 };
 
@@ -26,5 +31,8 @@ export const actions = {
     payload
   ) {
     commit("setMe", null); // 로그아웃 하는 거다.
+  },
+  changeNickname({ commit }, payload) {
+    commit("changeNickname", payload);
   }
 };
