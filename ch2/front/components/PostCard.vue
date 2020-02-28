@@ -74,7 +74,6 @@ export default {
     onEditPost() {},
     onToggleComment() {
       this.commentOpened = !this.commentOpened;
-      console.log(this.post);
     }
   }
 };
