@@ -44,6 +44,7 @@
     <v-row no-gutters>
       <!-- no-gutters 같은 경우 세로줄 간의 패딩을 없앨 수 있다. -->
       <v-col cols="12" md="4">
+        <!-- cols는 12에 고정이다. -->
         <login-form />
       </v-col>
 
