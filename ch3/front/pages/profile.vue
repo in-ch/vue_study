@@ -77,7 +77,8 @@ export default {
     return {
       title: "프로필"
     };
-  }
+  },
+  middleware: "authenticated"
 };
 </script>
 

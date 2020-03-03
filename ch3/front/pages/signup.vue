@@ -86,7 +86,8 @@ export default {
         alert("폼이 유효하지 않습니다.");
       }
     }
-  }
+  },
+  middleware: "anonymous"
 };
 </script>
 
