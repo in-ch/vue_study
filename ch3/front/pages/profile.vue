@@ -54,25 +54,25 @@ export default {
         nickname: this.nickname
       });
     },
-    removeFollowing(id){
-      this.$store.dispatch('users/removeFollowing', {
-        id: id;
+    removeFollowing(id) {
+      this.$store.dispatch("users/removeFollowing", {
+        id
       });
     },
-    removeFollower(){
-      this.$store.dispatch('users/removeFollower', {
-        id: id;
+    removeFollower(id) {
+      this.$store.dispatch("users/removeFollower", {
+        id
       });
     }
   },
   computed: {
-    followerList(){
+    followerList() {
       return this.$store.state.users.followerList;
     },
-    followingList(){
+    followingList() {
       return this.$store.state.users.followingList;
     }
-  }
+  },
   head() {
     return {
       title: "프로필"

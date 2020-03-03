@@ -46,14 +46,14 @@ export const mutations = {
     state.followingList.push(payload);
   },
 
-  removeFollowing({ commit }, payload) {
-    const index = state.followerList.findIndex(v => v.id === payload.id);
-    state.followerList.splice(index, 1);
-  },
-
-  removeFollower({ commit }, payload) {
+  removeFollowing(state, payload) {
     const index = state.followingList.findIndex(v => v.id === payload.id);
     state.followingList.splice(index, 1);
+  },
+
+  removeFollower(state, payload) {
+    const index = state.followerList.findIndex(v => v.id === payload.id);
+    state.followerList.splice(index, 1);
   }
 };
 
