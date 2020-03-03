@@ -75,6 +75,15 @@ export default {
       title: "회원가입"
     };
   },
+  watch: {
+    me(value) {
+      if (value) {
+        this.$router.push({
+          path: "/"
+        });
+      }
+    }
+  },
   methods: {
     onSubmitForm() {
       if (this.$refs.form.validate()) {
@@ -85,6 +94,11 @@ export default {
       } else {
         alert("폼이 유효하지 않습니다.");
       }
+    }
+  },
+  computed: {
+    me() {
+      return this.$store.state.users.me;
     }
   },
   middleware: "anonymous"
