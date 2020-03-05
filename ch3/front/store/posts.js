@@ -3,7 +3,8 @@ export const state = () => ({
   hasMorePost: true // 이게 false이면 서버에서 게시글을 더 이상 불러오지 않음.
 });
 
-const limit = 10;
+const totalPosts = 101;
+const limit = 10; // 실무에서는 limit을 안 쓰는데 이유는 실무에서는 네트워크가 껴있으니깐 total post가 계속 바뀔 수도 있기 때문에, 나중에 lastId 기반으로 한다. 그리고 쓰로톨링으로 인피니티 스크롤을 한다.
 
 export const mutations = {
   addMainPost(state, payload) {
@@ -18,7 +19,9 @@ export const mutations = {
     state.mainPosts[index].Comments.unshift(payload);
   },
   loadPosts(state, payload) {
-    const fakePosts = Array(limit)
+    const diff = totalPosts - state.mainPosts.length; // 아직 안 불러온 게시글 수
+
+    const fakePosts = Array(diff > limit ? limit : diff)
       .fill()
       .map(v => ({
         id: Math.random().toString(),
