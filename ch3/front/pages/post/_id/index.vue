@@ -1,5 +1,5 @@
 <template>
-  <!-- 이 페이지는 주소/post/id값이 없이 주소/post라고 주소창에 써도 접근이 가능함 -->
+  <!-- 이 페이지는 주소/post/id값 이라고 주소창에 썻을 때만 접근이 가능함 -->
   <v-container v-if="post">
     <post-card :post="post" />
   </v-container>
