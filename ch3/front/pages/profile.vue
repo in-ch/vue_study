@@ -50,6 +50,10 @@ export default {
       nicknameRules: [v => !!v || "닉네임을 입력하세요."]
     };
   },
+  fetch({ store }) {
+    store.dispatch("loadFollowers");
+    store.dispatch("loadFollowings");
+  },
   methods: {
     onChangeNickname() {
       this.$store.dispatch("users/changeNickname", {

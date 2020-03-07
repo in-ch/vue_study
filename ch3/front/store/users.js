@@ -1,33 +1,7 @@
 export const state = () => ({
   me: null,
-  followerList: [
-    {
-      id: 1,
-      nickname: "히어로"
-    },
-    {
-      id: 2,
-      nickname: "엘리멘탈"
-    },
-    {
-      id: 3,
-      nickname: "데스티니"
-    }
-  ],
-  followingList: [
-    {
-      id: 1,
-      nickname: "히어로+"
-    },
-    {
-      id: 2,
-      nickname: "엘리멘탈+"
-    },
-    {
-      id: 3,
-      nickname: "데스티니+"
-    }
-  ],
+  followerList: [],
+  followingList: [],
   hasMoreFollower: true,
   hasMoreFollowing: true
 });
@@ -61,7 +35,7 @@ export const mutations = {
     const index = state.followerList.findIndex(v => v.id === payload.id);
     state.followerList.splice(index, 1);
   },
-  loadMoreFollowering(state) {
+  loadFollowings(state) {
     const diff = totalFollowing;
     const fakeUsers = Array(diff > limit ? limit : diff)
       .fill()
@@ -74,7 +48,7 @@ export const mutations = {
     state.followingList = state.followingList.concat(fakeUsers);
     state.hasMoreFollowing = fakeUsers.length === limit;
   },
-  loadMoreFollowers(state) {
+  loadFollowers(state) {
     const diff = totalFollowing;
     const fakeUsers = Array(diff > limit ? limit : diff)
       .fill()
@@ -128,9 +102,9 @@ export const actions = {
       commit("loadFollowers");
     }
   },
-  loadFollower({ commit }, payload) {
+  loadFollowing({ commit }, payload) {
     if (state.hasMoreFollowing) {
-      commit("loadFollowerings");
+      commit("loadFollowings");
     }
   }
 };
