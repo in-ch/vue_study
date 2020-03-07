@@ -97,12 +97,12 @@ export const actions = {
   removeFollower({ commit }, payload) {
     commit("removeFollower", payload);
   },
-  loadFollower({ commit }, payload) {
+  loadFollowers({ commit }, payload) {
     if (state.hasMoreFollower) {
       commit("loadFollowers");
     }
   },
-  loadFollowing({ commit }, payload) {
+  loadFollowings({ commit }, payload) {
     if (state.hasMoreFollowing) {
       commit("loadFollowings");
     }

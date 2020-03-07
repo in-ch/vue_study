@@ -51,8 +51,8 @@ export default {
     };
   },
   fetch({ store }) {
-    store.dispatch("loadFollowers");
-    store.dispatch("loadFollowings");
+    store.dispatch("users/loadFollowers");
+    store.dispatch("users/loadFollowings");
   },
   methods: {
     onChangeNickname() {
