@@ -27,8 +27,14 @@ export const state = () => ({
       id: 3,
       nickname: "데스티니+"
     }
-  ]
+  ],
+  hasMoreFollower: true,
+  hasMoreFollowing: true
 });
+
+const totalFollowers = 8;
+const totalFollowing = 6;
+const limit = 3;
 
 export const mutations = {
   //단순한 동기적 작업을 시킬 때 사용한다.
@@ -54,6 +60,32 @@ export const mutations = {
   removeFollower(state, payload) {
     const index = state.followerList.findIndex(v => v.id === payload.id);
     state.followerList.splice(index, 1);
+  },
+  loadMoreFollowering(state) {
+    const diff = totalFollowing;
+    const fakeUsers = Array(diff > limit ? limit : diff)
+      .fill()
+      .map(
+        (v = {
+          id: Math.random().toString(),
+          nickname: Math.floor(Math.random() * 1000)
+        })
+      );
+    state.followingList = state.followingList.concat(fakeUsers);
+    state.hasMoreFollowing = fakeUsers.length === limit;
+  },
+  loadMoreFollowers(state) {
+    const diff = totalFollowing;
+    const fakeUsers = Array(diff > limit ? limit : diff)
+      .fill()
+      .map(
+        (v = {
+          id: Math.random().toString(),
+          nickname: Math.floor(Math.random() * 1000)
+        })
+      );
+    state.followingList = state.followerList.concat(fakeUsers);
+    state.hasMoreFollowing = fakeUsers.length === limit;
   }
 };
 
@@ -90,5 +122,15 @@ export const actions = {
   },
   removeFollower({ commit }, payload) {
     commit("removeFollower", payload);
+  },
+  loadFollower({ commit }, payload) {
+    if (state.hasMoreFollower) {
+      commit("loadFollowers");
+    }
+  },
+  loadFollower({ commit }, payload) {
+    if (state.hasMoreFollowing) {
+      commit("loadFollowerings");
+    }
   }
 };

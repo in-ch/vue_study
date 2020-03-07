@@ -20,6 +20,7 @@
         <v-container>
           <v-subheader>팔로잉</v-subheader>
           <follow-list :users="followingList" :remove="removeFollowing" />
+          <v-btn v-if="hasMoreFollowing" dark style="width:100%">더보기</v-btn>
         </v-container>
       </v-card>
 
@@ -27,6 +28,7 @@
         <v-container>
           <v-subheader>팔로워</v-subheader>
           <follow-list :users="followerList" :remove="removeFollower" />
+          <v-btn v-if="hasMoreFollower" dark style="width:100%">더보기</v-btn>
         </v-container>
       </v-card>
     </v-container>
@@ -71,6 +73,12 @@ export default {
     },
     followingList() {
       return this.$store.state.users.followingList;
+    },
+    hasMoreFollower() {
+      return this.$store.state.users.hasMoreFollower;
+    },
+    hasMoreFollowing() {
+      return this.$store.state.users.hasMoreFollowing;
     }
   },
   head() {
