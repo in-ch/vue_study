@@ -13,6 +13,7 @@
 import PostCard from "~/components/PostCard";
 import PostForm from "~/components/PostForm";
 export default {
+  scrollToTop: true,
   components: {
     PostCard,
     PostForm
