@@ -1,7 +1,6 @@
 <template>
   <div>
     <v-container>
-      <post-form v-if="me" />
       <div>
         <post-card v-for="p in mainPosts" :key="p.id" :post="p" />
       </div>
@@ -11,11 +10,10 @@
 
 <script>
 import PostCard from "~/components/PostCard";
-import PostForm from "~/components/PostForm";
+
 export default {
   components: {
-    PostCard,
-    PostForm
+    PostCard
   },
   data() {
     return {

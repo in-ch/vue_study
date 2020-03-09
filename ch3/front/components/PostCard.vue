@@ -4,7 +4,9 @@
       <v-card-text>
         <div>
           <h3>
-            <nuxt-link :to="'/user/'">{{ post.User.nickname }}</nuxt-link>
+            <nuxt-link :to="'/user/' + post.User.id">{{
+              post.User.nickname
+            }}</nuxt-link>
           </h3>
           <nuxt-link :to="'/post/' + post.id">{{ post.content }}</nuxt-link>
         </div>

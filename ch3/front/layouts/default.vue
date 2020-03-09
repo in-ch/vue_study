@@ -9,13 +9,19 @@
         <v-spacer></v-spacer>
 
         <v-toolbar-items>
-          <v-text-field
-            label="검색"
-            hide-details
-            prepend-icon="mdi-magnify"
-            :style="{ display: 'flex', alignItems: 'center' }"
-          />
-
+          <v-form @submit.prevent="onSearchHashTag">
+            <div
+              :style="{ display: 'flex', height: '100%', alignItems: 'center' }"
+            >
+              <v-text-field
+                label="검색"
+                hide-details
+                prepend-icon="mdi-magnify"
+                :style="{ display: 'flex', alignItems: 'center' }"
+                v-model="hashtag"
+              />
+            </div>
+          </v-form>
           <v-btn
             text
             nuxt
@@ -64,7 +70,7 @@ export default {
   },
   data() {
     return {
-      name: "Nuxt.js"
+      hashtag: ""
     };
   },
   computed: {
@@ -76,6 +82,12 @@ export default {
     onChangeName() {
       this.$store.commit("posts/bye");
       console.log(this.$store.state.posts.name);
+    },
+    onSearchHashTag() {
+      this.$router.push({
+        path: `/hashtag/${this.hashtag}`
+      });
+      this.hashtag = "";
     }
   }
 };
