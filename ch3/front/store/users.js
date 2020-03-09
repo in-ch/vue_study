@@ -39,12 +39,11 @@ export const mutations = {
     const diff = totalFollowing;
     const fakeUsers = Array(diff > limit ? limit : diff)
       .fill()
-      .map(
-        (v = {
-          id: Math.random().toString(),
-          nickname: Math.floor(Math.random() * 1000)
-        })
-      );
+      .map(v => ({
+        id: Math.random().toString(),
+        nickname: Math.floor(Math.random() * 1000)
+      }));
+
     state.followingList = state.followingList.concat(fakeUsers);
     state.hasMoreFollowing = fakeUsers.length === limit;
   },
@@ -52,12 +51,11 @@ export const mutations = {
     const diff = totalFollowing;
     const fakeUsers = Array(diff > limit ? limit : diff)
       .fill()
-      .map(
-        (v = {
-          id: Math.random().toString(),
-          nickname: Math.floor(Math.random() * 1000)
-        })
-      );
+      .map(v => ({
+        id: Math.random().toString(),
+        nickname: Math.floor(Math.random() * 1000)
+      }));
+
     state.followingList = state.followerList.concat(fakeUsers);
     state.hasMoreFollowing = fakeUsers.length === limit;
   }

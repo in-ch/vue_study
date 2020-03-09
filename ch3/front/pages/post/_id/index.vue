@@ -10,7 +10,6 @@
 
 <script>
 import PostCard from "~/components/PostCard";
-
 export default {
   components: {
     PostCard
@@ -24,5 +23,3 @@ export default {
   }
 };
 </script>
-
-<style scoped></style>
