@@ -32,3 +32,4 @@ https:// 는 포트 :443
 sequelize를 설치하는 이유는 sql 표현을 통일화하기 위해서
 mysql2는 node랑 mysql를 이어주는 드라이버같은 거임
 npx sequelize init를 한 이유는 글로벌로 설치하면 package에 표현이 안되서 이렇게 하는 거임. 그리고 migrations같은 거 쓸려면 설치해야함
+npm i -D nodemon 설치하면 기존에는 백에서 기능바뀌면 껏다 다시 껴야됐는데, 이걸 쓰면 그 짓을 안해도 된다.
