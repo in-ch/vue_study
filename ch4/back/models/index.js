@@ -10,7 +10,9 @@ const sequelize = new Sequelize(
   config
 );
 
-Object.keys(db).forEach(modelName => {
+db.User = require("./user")(sequelize, Sequelize); // 이러면 사용자 저장할 준비가 일단 완료된 것이다.
+
+Object.keys(db).forEach((modelName) => {
   if (db[modelName].associate) {
     db[modelName].associate(db);
   }
