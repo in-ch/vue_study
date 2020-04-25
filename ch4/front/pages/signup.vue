@@ -58,50 +58,51 @@ export default {
       nickname: "",
       terms: "", //약관 동의
       emailRules: [
-        v => !!v || "이메일은 필수입니다.",
-        v => /.+@.+/.test(v) || "이메일이 유효하지 않습니다."
+        (v) => !!v || "이메일은 필수입니다.",
+        (v) => /.+@.+/.test(v) || "이메일이 유효하지 않습니다.",
       ],
-      nicknameCheckRules: [v => !!v || "닉네임은 필수입니다."],
-      passwordRules: [v => !!v || "비밀번호는 필수입니다."],
+      nicknameCheckRules: [(v) => !!v || "닉네임은 필수입니다."],
+      passwordRules: [(v) => !!v || "비밀번호는 필수입니다."],
       passwordCheckRules: [
-        v => !!v || "비밀번호 확인은 필수입니다.",
-        v => v === this.password || "비밀번호가 일치하지 않습니다."
+        (v) => !!v || "비밀번호 확인은 필수입니다.",
+        (v) => v === this.password || "비밀번호가 일치하지 않습니다.",
       ],
-      termsCheckRules: [v => !!v || "약관에 동의해주세요."]
+      termsCheckRules: [(v) => !!v || "약관에 동의해주세요."],
     };
   },
   head() {
     return {
-      title: "회원가입"
+      title: "회원가입",
     };
   },
   watch: {
     me(value) {
       if (value) {
         this.$router.push({
-          path: "/"
+          path: "/",
         });
       }
-    }
+    },
   },
   methods: {
     onSubmitForm() {
       if (this.$refs.form.validate()) {
         this.$store.dispatch("users/signUp", {
           nickname: this.nickname,
-          email: this.email
+          email: this.email,
+          password: this.password,
         });
       } else {
         alert("폼이 유효하지 않습니다.");
       }
-    }
+    },
   },
   computed: {
     me() {
       return this.$store.state.users.me;
-    }
+    },
   },
-  middleware: "anonymous"
+  middleware: "anonymous",
 };
 </script>
 

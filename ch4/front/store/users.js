@@ -3,7 +3,7 @@ export const state = () => ({
   followerList: [],
   followingList: [],
   hasMoreFollower: true,
-  hasMoreFollowing: true
+  hasMoreFollowing: true,
 });
 
 const totalFollowers = 8;
@@ -27,21 +27,21 @@ export const mutations = {
   },
 
   removeFollowing(state, payload) {
-    const index = state.followingList.findIndex(v => v.id === payload.id);
+    const index = state.followingList.findIndex((v) => v.id === payload.id);
     state.followingList.splice(index, 1);
   },
 
   removeFollower(state, payload) {
-    const index = state.followerList.findIndex(v => v.id === payload.id);
+    const index = state.followerList.findIndex((v) => v.id === payload.id);
     state.followerList.splice(index, 1);
   },
   loadFollowings(state) {
     const diff = totalFollowing;
     const fakeUsers = Array(diff > limit ? limit : diff)
       .fill()
-      .map(v => ({
+      .map((v) => ({
         id: Math.random().toString(),
-        nickname: Math.floor(Math.random() * 1000)
+        nickname: Math.floor(Math.random() * 1000),
       }));
 
     state.followingList = state.followingList.concat(fakeUsers);
@@ -51,14 +51,14 @@ export const mutations = {
     const diff = totalFollowing;
     const fakeUsers = Array(diff > limit ? limit : diff)
       .fill()
-      .map(v => ({
+      .map((v) => ({
         id: Math.random().toString(),
-        nickname: Math.floor(Math.random() * 1000)
+        nickname: Math.floor(Math.random() * 1000),
       }));
 
     state.followingList = state.followerList.concat(fakeUsers);
     state.hasMoreFollowing = fakeUsers.length === limit;
-  }
+  },
 };
 
 export const actions = {
@@ -69,6 +69,12 @@ export const actions = {
   ) {
     //commit은 mutations을 실행시키는 거, displatch는 actions를 실행시키는 거,
     commit("setMe", payload); // 유저의 상태를 바꾸기 위해 사용
+    this.$axios.post("/user", {
+      // 이런 것을 REST API라고 한다.
+      email: payload.email,
+      nickname: payload.nickname,
+      password: payload.password,
+    });
   },
   login({ commit, dispatch, state, rootState, getters, rootGetters }, payload) {
     commit("setMe", payload);
@@ -104,5 +110,5 @@ export const actions = {
     if (state.hasMoreFollowing) {
       commit("loadFollowings");
     }
-  }
+  },
 };

@@ -29,7 +29,17 @@ http:// 는 포트 :80
 https:// 는 포트 :443
 따라서 app.js에서 app.listen 부분 바꿔야함.
 
+#4-3 강의
 sequelize를 설치하는 이유는 sql 표현을 통일화하기 위해서
-mysql2는 node랑 mysql를 이어주는 드라이버같은 거임
-npx sequelize init를 한 이유는 글로벌로 설치하면 package에 표현이 안되서 이렇게 하는 거임. 그리고 migrations같은 거 쓸려면 설치해야함
+mysql2는 node랑 mysql를 이어주는 드라이버같은 거임 (mysql은 따로 설치해야함)
+npm i -D sequelize-cli
+npx sequelize init -> 설치 후 여러 폴더들이 생김
+npx sequelize init를 한 이유는 글로벌(=npm i -g sequelize init)로 설치하면 package.js에 기록이 안되서 이렇게 하는 거임. 그리고 migrations같은 거 쓸려면 설치해야함
+ㄴ 폴더를 만들어줘서 기본 세팅을 해주는 거임
+back -> models -> index.js 에서 처음 작성된 코드가 이상하니 바꿔야함... 현재 바꿔있으니깐 나중에 쓸 때는 복붙해서 쓰기..
+back -> config -> config.json에서 서버 세팅[비밀번호 등..]을 해줄 수 있음.
 npm i -D nodemon 설치하면 기존에는 백에서 기능바뀌면 껏다 다시 껴야됐는데, 이걸 쓰면 그 짓을 안해도 된다.
+ㄴpackage.json에서 dev를 "nodemon app.js"로 바꿔야한다.
+
+#4-4 강의
+app.get(~) 이런식으로 back쪽에서 요청을 처리하는데 만약 게시글을 가져오고 조회수를 하나 늘린다 같이 애매한 경우에는 보통 post를 많이 쓴다고 생각하면 된다.
