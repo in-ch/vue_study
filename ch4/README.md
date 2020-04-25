@@ -29,7 +29,8 @@ http:// 는 포트 :80
 https:// 는 포트 :443
 따라서 app.js에서 app.listen 부분 바꿔야함.
 
-#4-3 강의
+[#4-3 강의]
+
 sequelize를 설치하는 이유는 sql 표현을 통일화하기 위해서
 mysql2는 node랑 mysql를 이어주는 드라이버같은 거임 (mysql은 따로 설치해야함)
 npm i -D sequelize-cli
@@ -41,5 +42,8 @@ back -> config -> config.json에서 서버 세팅[비밀번호 등..]을 해줄 
 npm i -D nodemon 설치하면 기존에는 백에서 기능바뀌면 껏다 다시 껴야됐는데, 이걸 쓰면 그 짓을 안해도 된다.
 ㄴpackage.json에서 dev를 "nodemon app.js"로 바꿔야한다.
 
-#4-4 강의
+[#4-4 강의]
+
 app.get(~) 이런식으로 back쪽에서 요청을 처리하는데 만약 게시글을 가져오고 조회수를 하나 늘린다 같이 애매한 경우에는 보통 post를 많이 쓴다고 생각하면 된다.
+데이터를 왔다가 갔다리했다는 것을 보기 위해서는 크롬 관리자모드에서 Network를 클릭 -> 하고 Name에서 전송한 데이터 확인하고 Headers 탭에서 맨 아래에 Request Payload를 확인해보면 전송한 데이터가 몬지 확인해 볼 수 있다.
+Response는 응답의 body임...
