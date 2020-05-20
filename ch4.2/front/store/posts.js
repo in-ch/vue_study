@@ -1,6 +1,6 @@
 export const state = () => ({
   mainPosts: [],
-  hasMorePost: true // 이게 false이면 서버에서 게시글을 더 이상 불러오지 않음.
+  hasMorePost: true, // 이게 false이면 서버에서 게시글을 더 이상 불러오지 않음.
 });
 
 const totalPosts = 101;
@@ -11,11 +11,11 @@ export const mutations = {
     state.mainPosts.unshift(payload); //push는 뒤에 글을 넣는 거고 unshift는 맨 위에 글을 넣는 것이다.
   },
   removeMainPost(state, payload) {
-    const index = state.mainPosts.findIndex(v => v.id === payload.id);
+    const index = state.mainPosts.findIndex((v) => v.id === payload.id);
     state.mainPosts.splice(index, 1);
   },
   addComment(state, payload) {
-    const index = state.mainPosts.findIndex(v => v.id === payload.postId);
+    const index = state.mainPosts.findIndex((v) => v.id === payload.postId);
     state.mainPosts[index].Comments.unshift(payload);
   },
   loadPosts(state, payload) {
@@ -23,19 +23,19 @@ export const mutations = {
 
     const fakePosts = Array(diff > limit ? limit : diff)
       .fill()
-      .map(v => ({
+      .map((v) => ({
         id: Math.random().toString(),
         User: {
           id: 1,
-          nickname: "제로초"
+          nickname: "인쵸리",
         },
-        content: `Hello infinite scrolling ~ ${Math.random()}`,
+        content: `무한스크롤잉 ~ ${Math.random()}`,
         Comment: [],
-        Images: []
+        Images: [],
       }));
     state.mainPosts = state.mainPosts.concat(fakePosts);
     state.hasMorePost = fakePosts.length === limit; // 만약 limit이랑 길이가 맞지 않으면 false가 되므로 hasMorePost 값에 false를 넣는 거임.
-  }
+  },
 };
 
 export const actions = {
@@ -53,5 +53,5 @@ export const actions = {
   },
   loadPosts({ commit, state }, payload) {
     commit("loadPosts");
-  }
+  },
 };
